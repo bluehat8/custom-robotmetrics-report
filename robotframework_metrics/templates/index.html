@@ -126,7 +126,7 @@
             <li><a href="#" class="tablink" id="defaultOpen" onclick="openPage('dashboard', this, '#fc6666')">Dashboard</a></li>
             <li><a href="#" class="tablink" onclick="openPage('suiteMetrics', this, '#fc6666'); executeDataTable('#sm',6)">Suite</a></li>
             <li><a href="#" class="tablink" onclick="openPage('testMetrics', this, '#fc6666'); executeDataTable('#tm',3)">Test</a></li>
-            <!-- <li class="{{ hide_keyword_menu }}"><a href="#" class="tablink" onclick="openPage('keywordMetrics', this, '#fc6666'); executeDataTable('#km',3)">Keyword</a></li> -->
+            <li class="{{ hide_keyword_menu }}"><a href="#" class="tablink" onclick="openPage('keywordMetrics', this, '#fc6666'); executeDataTable('#km',3)">Keyword</a></li>
             <li class="{{ hide_kw_times_menu }}"><a href="#" class="tablink" onclick="openPage('keywordMetricsTime', this, '#fc6666'); executeDataTable('#kmt',1)">KW Times</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -344,10 +344,10 @@
                 <th>Suite Name</th>
                 <th>Test Name</th>
                 <th>Status</th>
-                <th class="{{hide_docs}}">Documentation</th>
+                <th>Documentation</th>
                 <th>Time (s)</th>
                 <th>Message</th>
-                <th class="{{hide_tags}}">Tags</th>
+                <th>Tags</th>
               </tr>
           </thead>
           <tbody>
@@ -362,10 +362,10 @@
                 {% else %}
                   <td style="color: orange"> {{ test['Status'] }}</td>
                 {% endif %}
-                <td class="{{hide_docs}}">{{ test['Documentation'] }}</td>
+                <td>{{ test['Documentation'] }}</td>
                 <td>{{ (test['Time']/1000)|round(2) }}</td>
                 <td style="word-wrap: break-word;max-width: 250px; white-space: normal; text-align: left;">{{ test['Message'] }}</td>
-                <td class="{{hide_tags}}" style="word-wrap: break-word;max-width: 250px; white-space: normal; text-align: left;">{{ test['Tags'] }}</td>
+                <td style="word-wrap: break-word;max-width: 250px; white-space: normal; text-align: left;">{{ test['Tags'] }}</td>
               </tr>
             {% endfor %}
           </tbody>
@@ -373,7 +373,7 @@
       </div>
 
       <!-- Keyword Data -->
-      <!-- <div class="tabcontent" id="keywordMetrics">
+       <div class="tabcontent" id="keywordMetrics">
         <table id="km" class="display tablecard" style="width:100%">
           <thead>
               <tr>
@@ -400,13 +400,14 @@
             {% endfor %}
           </tbody>
         </table>
-      </div> -->
+      </div>
 
       <!-- Keyword Average -->
       <div class="tabcontent" id="keywordMetricsTime">
         <table id="kmt" class="display tablecard" style="width:100%">
           <thead>
               <tr>
+                  <!--<th>Test Name</th>-->
                   <th>Keyword Name</th>
                   <th>Times</th>
                   <th>Min Duration(s)</th>
@@ -418,11 +419,13 @@
             {% if not keyword_times.empty %}
               {% for key, value in keyword_times.iterrows() %}
                 <tr>
+                  <!--<td style="word-wrap: break-word;max-width: 250px; white-space: normal; text-align: left;">{{ value['Test Id'] }}</td>--> 
                   <td style="word-wrap: break-word;max-width: 250px; white-space: normal; text-align: left;">{{ value['Name'] }}</td>
                   <td>{{ value['times'] }}</td>
                   <td>{{ (value['time_min']/1000)|round(2) }}</td>
                   <td>{{ (value['time_max']/1000)|round(2) }}</td>
                   <td>{{ (value['time_mean']/1000)|round(2) }}</td>
+
                 </tr>
               {% endfor %}
             {% endif %}

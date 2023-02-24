@@ -11,6 +11,7 @@ class KeywordResults(ResultVisitor):
     def start_keyword(self, kw):
         if (kw.libname not in self.ignore_library) and (kw.type not in self.ignore_type):
             kw_json = {
+                "TestName" : kw.parent.name,
                 "Name" : kw.name,
                 "Status" : kw.status,
                 "Time" : kw.elapsedtime

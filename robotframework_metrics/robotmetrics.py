@@ -131,7 +131,7 @@ def generate_report(opts):
             kw_stats = kw_stats,
             suites = suite_list,
             tests = test_list,
-            # keywords = kw_list,
+             keywords = kw_list,
             keyword_times = kw_times,
             error_stats = error_stats,
             suite_error_stats = suite_error_stats,
