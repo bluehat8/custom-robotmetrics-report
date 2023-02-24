@@ -1,4 +1,6 @@
-# Robot Framework Metrics Report
+# Custom Robot Framework Metrics Report by adiralashiva8
+
+***Original autor: adiralashiva8***
 
 Creates custom HTML report (dashboard view) by parsing robotframework output.xml file
 
