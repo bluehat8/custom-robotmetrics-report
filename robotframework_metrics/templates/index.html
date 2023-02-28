@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <link href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <!--Py -script-->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
     <style>
       body {
         padding-top: 70px;
@@ -338,6 +342,33 @@
 
       <!-- Test Case Data -->
       <div class="tabcontent" id="testMetrics">
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom:20px;">Eliminar vídeos de test aprobados</button>
+        <!--Ventana modal para eliminar videos-->
+
+    
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Eliminar vídeos</h4>
+              </div>
+              <div class="modal-body">
+                ¿Desea eliminar los vídeos de los test aprobados?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary"  id="eliminar-videos-btn">Sí</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+                    <!--Fin de ventana modal para eliminar videos-->
+
+      
+
         <table id="tm" class="display tablecard" style="width:100%">
           <thead>
               <tr>
@@ -371,6 +402,40 @@
           </tbody>
         </table>
       </div>
+
+        <!--Script para eliminar videos-->
+        <script>
+          
+          document.getElementById('eliminar-videos-btn').addEventListener('click', function() {
+           
+              if (confirm('¿Está seguro de que desea eliminar todos los vídeos en la ruta especificada?')) {
+                // Obtener los nombres de los tests
+                const testNames = document.querySelectorAll("#tm tbody tr td:nth-child(2)");
+                testNames.forEach(testName => alert(testName.textContent));
+                //alert('Los vídeos han sido eliminados correctamente');
+                               
+              } 
+          });
+
+         
+        </script>
+          <!--End script para eliminar videos-->
+  
+  
+  
+
+
+   
+
+
+      <!--<script>
+      var myModal = document.getElementById('myModal')
+      var myInput = document.getElementById('myInput')
+
+      myModal.addEventListener('shown.bs.modal', function () {
+      myInput.focus()
+      })
+      </script> -->
 
       <!-- Keyword Data -->
        <div class="tabcontent" id="keywordMetrics">
@@ -542,7 +607,9 @@
                   columns:':visible'
                 },
                 postfixButtons: [ 'colvisRestore' ]
-              },
+              }
+              
+              ,
             ],
             columnDefs: [ {
               visible: false,
